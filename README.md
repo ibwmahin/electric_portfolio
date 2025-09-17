@@ -1,73 +1,211 @@
-# Welcome to your Lovable project
+# Brian Do - Portfolio Website
 
-## Project info
+A beautiful, modern portfolio website clone featuring dark/light theme support, smooth animations, and responsive design. Built with React, TypeScript, TailwindCSS, and Framer Motion.
 
-**URL**: https://lovable.dev/projects/3fea7d48-3da2-4a96-a97a-6226388f3b7c
+## 🚀 Features
 
-## How can I edit this code?
+### Design & UI
+- **Dark/Light Theme Toggle**: Seamless theme switching with smooth transitions
+- **Responsive Design**: Mobile-first approach with optimized layouts for all devices
+- **Glassmorphism Navigation**: Fixed navigation bar with backdrop blur effect
+- **Smooth Animations**: Powered by Framer Motion for engaging user interactions
+- **Design System**: Consistent color palette and typography using semantic tokens
 
-There are several ways of editing your application.
+### Pages & Functionality
+- **Home Page**: Hero section with profile photo, project previews, and call-to-action
+- **About Page**: Detailed personal information and background story
+- **Projects Page**: Complete portfolio showcase with project descriptions
+- **Products Page**: Digital products and templates with external links
+- **404 Page**: Custom error page with animated elements
 
-**Use Lovable**
+### Technical Features
+- **TypeScript**: Full type safety throughout the application
+- **Font Awesome Icons**: Professional iconography
+- **SEO Optimized**: Proper meta tags and semantic HTML structure
+- **Accessibility**: ARIA labels and keyboard navigation support
+- **Well Documented Code**: Comprehensive JSDoc comments and code organization
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/3fea7d48-3da2-4a96-a97a-6226388f3b7c) and start prompting.
+## 🛠️ Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+- **Framework**: React 18 with TypeScript
+- **Styling**: TailwindCSS with custom design tokens
+- **Animations**: Framer Motion for smooth interactions
+- **Icons**: Font Awesome React components
+- **Routing**: React Router DOM
+- **Build Tool**: Vite
+- **Code Quality**: ESLint configuration
 
-**Use your preferred IDE**
+## 📁 Project Structure
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/
+├── components/          # Reusable UI components
+│   ├── ThemeProvider.tsx    # Theme management context
+│   ├── Navigation.tsx       # Main navigation bar
+│   ├── StatusBadge.tsx      # Status indicator component
+│   ├── ProjectCard.tsx      # Project display card
+│   ├── ProductCard.tsx      # Product display card
+│   └── Footer.tsx          # Site footer
+├── pages/              # Page components
+│   ├── Home.tsx            # Landing page
+│   ├── About.tsx           # About page
+│   ├── Projects.tsx        # Projects showcase
+│   ├── Products.tsx        # Products listing
+│   └── NotFound.tsx        # 404 error page
+├── assets/             # Static assets
+│   └── profile-photo.jpg   # Profile image
+├── hooks/              # Custom React hooks
+├── lib/                # Utility functions
+└── index.css          # Global styles and design system
 ```
 
-**Edit a file directly in GitHub**
+## 🎨 Design System
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+The portfolio uses a comprehensive design system with semantic color tokens:
 
-**Use GitHub Codespaces**
+### Color Palette
+- **Primary**: Dark charcoal for text and UI elements
+- **Success**: Green for status indicators and accents
+- **Project Colors**: Unique colors for each project (Morva, Rectangle, Simply, etc.)
+- **Theme Support**: Full dark/light mode with smooth transitions
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+### Typography
+- **Font Family**: Inter (Google Fonts)
+- **Font Weights**: 300, 400, 500, 600, 700
+- **Responsive Text**: Fluid typography that scales with screen size
 
-## What technologies are used for this project?
+### Animations
+- **Page Transitions**: Staggered animations for content sections
+- **Hover Effects**: Subtle scale and shadow effects
+- **Theme Transitions**: Smooth color transitions when switching themes
+- **Loading States**: Fade-in animations for better perceived performance
 
-This project is built with:
+## 🔧 Getting Started
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Prerequisites
+- Node.js (v14 or higher)
+- npm or yarn package manager
 
-## How can I deploy this project?
+### Installation
 
-Simply open [Lovable](https://lovable.dev/projects/3fea7d48-3da2-4a96-a97a-6226388f3b7c) and click on Share -> Publish.
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd portfolio-website
+   ```
 
-## Can I connect a custom domain to my Lovable project?
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-Yes, you can!
+3. **Start the development server**
+   ```bash
+   npm run dev
+   ```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+4. **Build for production**
+   ```bash
+   npm run build
+   ```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+## 📱 Responsive Breakpoints
+
+- **Mobile**: 320px - 768px
+- **Tablet**: 768px - 1024px  
+- **Desktop**: 1024px+
+
+The design adapts seamlessly across all screen sizes with:
+- Flexible grid layouts
+- Responsive typography
+- Touch-friendly interactions
+- Optimized navigation for mobile devices
+
+## 🎯 Key Components
+
+### ThemeProvider
+Manages application-wide theme state with localStorage persistence.
+
+### Navigation
+Fixed navigation bar with glassmorphism effect, featuring:
+- Theme toggle button
+- Active page indicators
+- Smooth hover animations
+
+### ProjectCard & ProductCard
+Reusable components for displaying portfolio items with:
+- Hover animations
+- Color-coded project icons
+- External link handling
+
+## 🌟 Animations & Interactions
+
+### Page Animations
+- **Staggered Entry**: Content sections animate in sequence
+- **Scroll Animations**: Elements animate as they come into view
+- **Hover Effects**: Cards lift and scale on hover
+
+### Button Interactions
+- **Scale Animations**: Buttons scale on hover/tap
+- **Color Transitions**: Smooth color changes for interactive elements
+- **Loading States**: Visual feedback for user actions
+
+## 📈 Performance Optimizations
+
+- **Code Splitting**: Automatic code splitting with Vite
+- **Image Optimization**: Properly sized and optimized images
+- **CSS Optimization**: Purged unused CSS in production
+- **Font Loading**: Optimized Google Fonts loading with display: swap
+
+## 🔍 SEO & Accessibility
+
+### SEO Features
+- Semantic HTML structure
+- Proper heading hierarchy
+- Meta descriptions and titles
+- Open Graph tags for social sharing
+
+### Accessibility
+- ARIA labels for screen readers
+- Keyboard navigation support
+- High contrast color ratios
+- Focus indicators for interactive elements
+
+## 📧 Contact Integration
+
+The portfolio includes email functionality:
+- Copy email to clipboard feature
+- Social media links in footer
+- Contact call-to-action throughout the site
+
+## 🚀 Deployment
+
+This portfolio is optimized for deployment on:
+- **Vercel**: Zero-config deployment with automatic previews
+- **Netlify**: Continuous deployment from Git
+- **GitHub Pages**: Static site hosting
+- **Any static hosting service**
+
+## 🤝 Contributing
+
+Feel free to contribute to this project by:
+1. Forking the repository
+2. Creating a feature branch
+3. Making your changes
+4. Submitting a pull request
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+## 🙏 Acknowledgments
+
+- Design inspiration from modern portfolio websites
+- Font Awesome for beautiful icons
+- Google Fonts for typography
+- Framer Motion for smooth animations
+- TailwindCSS for utility-first styling
+
+---
+
+Built with ❤️ using React, TypeScript, and TailwindCSS
