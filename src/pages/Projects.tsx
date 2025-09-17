@@ -21,7 +21,7 @@ const projects = [
   {
     title: "Digital Pathways",
     description: "AI-powered educational platform",
-    icon: "🚀",
+    icon: "🎓",
     color: "morva" as const,
     url: "https://digitalpathways.ai/",
   },
@@ -48,9 +48,7 @@ const projects = [
   },
 ];
 
-/**
- * Products data for side projects section
- */
+/** Products data for side projects section */
 const products = [
   {
     title: "Pearni",
@@ -229,4 +227,3 @@ export function Projects() {
     </div>
   );
 }
-

@@ -59,11 +59,24 @@ export function Home() {
           <motion.div variants={itemVariants} className="space-y-6">
             <div className="flex items-center justify-between">
               <div className="space-y-4">
-                <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-                  I'm Abdulla Al Mahin
+                <h1 className="text-4xl md:text-5xl font-bold text-foreground flex gap-2">
+                  I'm Mahin
+                  <motion.div
+                    animate={{
+                      rotate: [0, 20, -10, 20, 0], // wave motion
+                    }}
+                    transition={{
+                      duration: 5.5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }}
+                    style={{ display: "inline-block", fontSize: "3rem" }}
+                  >
+                    👋
+                  </motion.div>
                 </h1>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Web developer from Bangladesh.
+                  Web Developer from Bangladesh.
                   <br />
                   Creating amazing digital experiences.
                 </p>

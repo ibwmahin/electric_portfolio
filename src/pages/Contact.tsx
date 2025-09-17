@@ -2,10 +2,13 @@
  * Contact Page Component
  *
  * Professional contact form with EmailJS integration.
- * Features animated form elements and social media links.
+ * Updated to match email template variables:
+ *  - from_name, reply_to, time, subject, message, phone, to_email
  */
 
-import { useState } from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -27,30 +30,25 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { StatusBadge } from "@/components/StatusBadge";
 
-/**
- * Contact form data interface
- */
 interface ContactFormData {
   name: string;
   email: string;
+  subject: string;
+  phone: string;
   message: string;
 }
 
-/**
- * Contact page with professional inquiry form
- */
 export function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<ContactFormData>({
     name: "",
     email: "",
+    subject: "",
+    phone: "",
     message: "",
   });
 
-  /**
-   * Social media links array for easy management
-   */
   const socialLinks = [
     {
       icon: faTwitter,
@@ -84,61 +82,74 @@ export function Contact() {
     },
   ];
 
-  /**
-   * Handle form input changes
-   */
+  // EmailJS keys — you already provided these; kept inline with import.meta.env fallback.
+  const serviceId =
+    (import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined) ??
+    "service_lyhmmox";
+  const templateId =
+    (import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined) ??
+    "template_2ag350j";
+  const publicKey =
+    (import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined) ??
+    "wG8px5150C96d09F3";
+
+  // Recipient email used by template variable {{to_email}}
+  const toEmail = "ibwmahin@gmail.com";
+
+  useEffect(() => {
+    if (publicKey) {
+      try {
+        emailjs.init(publicKey);
+      } catch (err) {
+        // init might fail in some environments; send() will still accept the key as fallback.
+        // console.warn("EmailJS init failed:", err);
+      }
+    }
+  }, [publicKey]);
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  /**
-   * Handle form submission with EmailJS
-   */
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
+    if (!serviceId || !templateId || !publicKey) {
+      toast({
+        title: "Configuration Required",
+        description:
+          "EmailJS service/template/public key missing. Please provide them.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      return;
+    }
+
     try {
-      // EmailJS configuration - replace with your actual keys
-      const serviceId = process.env.VITE_EMAILJS_SERVICE_ID || "";
-      const templateId = process.env.VITE_EMAILJS_TEMPLATE_ID || "";
-      const publicKey = process.env.VITE_EMAILJS_PUBLIC_KEY || "";
+      // Build template params exactly matching your email template variables
+      const templateParams = {
+        from_name: formData.name,
+        reply_to: formData.email,
+        time: new Date().toLocaleString(), // runtime time string (you can change timezone if needed)
+        subject: formData.subject || "New Contact Form Message",
+        message: formData.message,
+        phone: formData.phone || "N/A",
+        to_email: toEmail,
+      };
 
-      if (!serviceId || !templateId || !publicKey) {
-        toast({
-          title: "Configuration Required",
-          description:
-            "Please configure EmailJS service, template, and public keys.",
-          variant: "destructive",
-        });
-        return;
-      }
-
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          from_name: formData.name,
-          from_email: formData.email,
-          message: formData.message,
-          to_name: "Abdulla Al Mahin",
-        },
-        publicKey,
-      );
+      // Send email, pass publicKey as fallback if init failed earlier
+      await emailjs.send(serviceId, templateId, templateParams, publicKey);
 
       toast({
         title: "Message Sent!",
         description: "Thank you for your message. I'll get back to you soon!",
       });
 
-      // Reset form
-      setFormData({ name: "", email: "", message: "" });
+      setFormData({ name: "", email: "", subject: "", phone: "", message: "" });
     } catch (error) {
       console.error("EmailJS Error:", error);
       toast({
@@ -160,18 +171,13 @@ export function Contact() {
           transition={{ duration: 0.6 }}
           className="space-y-16"
         >
-          {/* Header Section */}
+          {/* Header */}
           <div className="text-center space-y-6">
             <div className="flex items-center justify-center gap-3">
               <motion.div
                 className="w-3 h-3 bg-success rounded-full"
-                animate={{
-                  scale: [1, 1.2, 1],
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                }}
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
               />
               <h1 className="text-4xl md:text-5xl font-bold text-foreground">
                 Let's Work Together
@@ -185,7 +191,7 @@ export function Contact() {
           </div>
 
           <div className="grid lg:grid-cols-2 gap-16">
-            {/* Contact Form */}
+            {/* Form */}
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -202,7 +208,11 @@ export function Contact() {
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form
+                onSubmit={handleSubmit}
+                className="space-y-6"
+                aria-label="Contact form"
+              >
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <Input
@@ -212,6 +222,8 @@ export function Contact() {
                       onChange={handleInputChange}
                       required
                       className="bg-card border-border"
+                      aria-label="Your name"
+                      disabled={isSubmitting}
                     />
                   </div>
                   <div>
@@ -223,6 +235,34 @@ export function Contact() {
                       onChange={handleInputChange}
                       required
                       className="bg-card border-border"
+                      aria-label="Your email"
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                </div>
+
+                {/* Subject & Phone (new fields to match your email template) */}
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div>
+                    <Input
+                      name="subject"
+                      placeholder="Subject (optional)"
+                      value={formData.subject}
+                      onChange={handleInputChange}
+                      className="bg-card border-border"
+                      aria-label="Subject"
+                      disabled={isSubmitting}
+                    />
+                  </div>
+                  <div>
+                    <Input
+                      name="phone"
+                      placeholder="Phone (optional)"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="bg-card border-border"
+                      aria-label="Phone"
+                      disabled={isSubmitting}
                     />
                   </div>
                 </div>
@@ -236,6 +276,8 @@ export function Contact() {
                     required
                     rows={6}
                     className="bg-card border-border resize-none"
+                    aria-label="Message"
+                    disabled={isSubmitting}
                   />
                 </div>
 
@@ -278,16 +320,14 @@ export function Contact() {
               transition={{ duration: 0.6, delay: 0.4 }}
               className="space-y-8"
             >
-              {/* Contact Information */}
               <div className="space-y-6">
                 <h3 className="text-xl font-semibold text-foreground">
                   Contact Information
                 </h3>
-
                 <div className="space-y-4">
                   <div className="flex items-center gap-4 text-muted-foreground">
                     <FontAwesomeIcon icon={faEnvelope} className="w-5 h-5" />
-                    <span>ibwmahin@gmail.com</span>
+                    <span>{toEmail}</span>
                   </div>
                   <div className="flex items-center gap-4 text-muted-foreground">
                     <FontAwesomeIcon
@@ -299,12 +339,10 @@ export function Contact() {
                 </div>
               </div>
 
-              {/* Social Media */}
               <div className="space-y-6">
                 <h3 className="text-xl font-semibold text-foreground">
                   Follow Me
                 </h3>
-
                 <div className="grid grid-cols-2 gap-4">
                   {socialLinks.map((social) => (
                     <motion.a
@@ -333,7 +371,6 @@ export function Contact() {
                 </div>
               </div>
 
-              {/* Response Time */}
               <div className="p-6 rounded-lg bg-card border border-border">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-2 h-2 bg-success rounded-full"></div>

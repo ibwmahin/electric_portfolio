@@ -136,25 +136,6 @@ export function Products() {
             </div>
           </motion.div>
 
-          {/* Additional Projects */}
-          <motion.div variants={itemVariants} className="space-y-4">
-            <h3 className="text-xl font-semibold text-foreground">
-              More Projects & Applications
-            </h3>
-
-            <div className="space-y-4">
-              {showcaseProjects.map((project, index) => (
-                <ProductCard
-                  key={index}
-                  title={project.title}
-                  category={project.category}
-                  icon={project.icon}
-                  href={project.href}
-                />
-              ))}
-            </div>
-          </motion.div>
-
           {/* Feature Highlight */}
           <motion.div
             variants={itemVariants}
