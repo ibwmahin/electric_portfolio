@@ -1,18 +1,18 @@
 /**
  * Projects Page Component
- * 
+ *
  * Showcases all projects and work portfolio with detailed descriptions.
  * Features animated project cards and responsive grid layout.
  */
 
-import { motion } from 'framer-motion';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCopy } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
-import { StatusBadge } from '../components/StatusBadge';
-import { ProjectCard } from '../components/ProjectCard';
-import { ProductCard } from '../components/ProductCard';
-import { Footer } from '../components/Footer';
+import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import { StatusBadge } from "../components/StatusBadge";
+import { ProjectCard } from "../components/ProjectCard";
+import { ProductCard } from "../components/ProductCard";
+import { Footer } from "../components/Footer";
 
 /**
  * Projects data array for easy management
@@ -23,29 +23,29 @@ const projects = [
     description: "AI-powered educational platform",
     icon: "🚀",
     color: "morva" as const,
-    url: "https://digitalpathways.ai/"
+    url: "https://digitalpathways.ai/",
   },
   {
     title: "LazyNvim Config",
     description: "Custom Neovim configuration",
     icon: "⚡",
     color: "rectangle" as const,
-    url: "https://github.com/ibwmahin/LazyNvim"
+    url: "https://github.com/ibwmahin/LazyNvim",
   },
   {
     title: "Gaming Website",
     description: "Interactive gaming platform",
     icon: "🎮",
     color: "simply" as const,
-    url: "https://ibwmahin.github.io/Gaming_Website/"
+    url: "https://ibwmahin.github.io/Gaming_Website/",
   },
   {
     title: "Manae Shopping Mart",
     description: "E-commerce platform",
     icon: "🛍️",
     color: "glassdoor" as const,
-    url: "https://manaeshoppingmartllc.com/"
-  }
+    url: "https://manaeshoppingmartllc.com/",
+  },
 ];
 
 /**
@@ -56,14 +56,14 @@ const products = [
     title: "Pearni",
     category: "Learning Platform",
     icon: "📚",
-    href: "https://pearni.netlify.app/"
+    href: "https://pearni.netlify.app/",
   },
   {
     title: "Cyber Scan Guardian Shield",
     category: "Security Tool",
     icon: "🛡️",
-    href: "https://ibwmahin.github.io/cyber-scan-guardian-shield/"
-  }
+    href: "https://ibwmahin.github.io/cyber-scan-guardian-shield/",
+  },
 ];
 
 /**
@@ -71,7 +71,7 @@ const products = [
  */
 export function Projects() {
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('ibwmahin@gmail.com');
+    navigator.clipboard.writeText("ibwmahin@gmail.com");
   };
 
   const containerVariants = {
@@ -80,18 +80,18 @@ export function Projects() {
       opacity: 1,
       transition: {
         delayChildren: 0.2,
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background mt-5">
       <div className="max-w-2xl mx-auto px-6 pt-24 pb-16">
         <motion.div
           variants={containerVariants}
@@ -110,9 +110,9 @@ export function Projects() {
               My Works
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Discover my portfolio of web development projects, where modern technology 
-              meets creative solutions. Each project represents my commitment to quality 
-              and innovation.
+              Discover my portfolio of web development projects, where modern
+              technology meets creative solutions. Each project represents my
+              commitment to quality and innovation.
             </p>
           </motion.div>
 
@@ -130,7 +130,7 @@ export function Projects() {
                   description={project.description}
                   icon={project.icon}
                   color={project.color}
-                  onClick={() => window.open(project.url, '_blank')}
+                  onClick={() => window.open(project.url, "_blank")}
                 />
               ))}
             </div>
@@ -142,7 +142,7 @@ export function Projects() {
               Explore My Products
             </h2>
             <p className="text-muted-foreground">
-              Some of the digital products that I worked on as side projects, 
+              Some of the digital products that I worked on as side projects,
               explore them now
             </p>
 
@@ -167,7 +167,7 @@ export function Projects() {
           </motion.div>
 
           {/* Technical Skills Highlight */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="bg-card border border-border rounded-2xl p-6 space-y-4"
           >
@@ -177,7 +177,8 @@ export function Projects() {
             </h3>
             <div className="text-sm text-muted-foreground">
               <p className="mb-2">
-                <strong>Frontend:</strong> React, TypeScript, Tailwind CSS, Framer Motion
+                <strong>Frontend:</strong> React, TypeScript, Tailwind CSS,
+                Framer Motion
               </p>
               <p className="mb-2">
                 <strong>Backend:</strong> Node.js, Express, MongoDB, PostgreSQL
@@ -189,8 +190,8 @@ export function Projects() {
           </motion.div>
 
           {/* Call to Action */}
-          <motion.div 
-            variants={itemVariants} 
+          <motion.div
+            variants={itemVariants}
             className="text-center space-y-6 pt-8"
           >
             <h3 className="text-2xl font-bold text-foreground">
@@ -199,7 +200,7 @@ export function Projects() {
             <p className="text-muted-foreground">
               Ready to bring your ideas to life with modern web technologies
             </p>
-            
+
             <div className="flex gap-3 justify-center">
               <Link to="/contact">
                 <motion.button
@@ -228,3 +229,4 @@ export function Projects() {
     </div>
   );
 }
+

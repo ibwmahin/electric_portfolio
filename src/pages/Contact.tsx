@@ -1,31 +1,31 @@
 /**
  * Contact Page Component
- * 
+ *
  * Professional contact form with EmailJS integration.
  * Features animated form elements and social media links.
  */
 
-import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { 
-  faTwitter, 
-  faInstagram, 
-  faDribbble, 
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faTwitter,
+  faInstagram,
+  faDribbble,
   faLinkedin,
-  faGithub
-} from '@fortawesome/free-brands-svg-icons';
-import { 
-  faEnvelope, 
-  faMapMarkerAlt, 
-  faPaperPlane 
-} from '@fortawesome/free-solid-svg-icons';
-import emailjs from '@emailjs/browser';
-import { useToast } from '@/hooks/use-toast';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Textarea } from '@/components/ui/textarea';
-import { StatusBadge } from '@/components/StatusBadge';
+  faGithub,
+} from "@fortawesome/free-brands-svg-icons";
+import {
+  faEnvelope,
+  faMapMarkerAlt,
+  faPaperPlane,
+} from "@fortawesome/free-solid-svg-icons";
+import emailjs from "@emailjs/browser";
+import { useToast } from "@/hooks/use-toast";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { StatusBadge } from "@/components/StatusBadge";
 
 /**
  * Contact form data interface
@@ -43,55 +43,57 @@ export function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState<ContactFormData>({
-    name: '',
-    email: '',
-    message: ''
+    name: "",
+    email: "",
+    message: "",
   });
 
   /**
    * Social media links array for easy management
    */
   const socialLinks = [
-    { 
-      icon: faTwitter, 
-      href: 'https://twitter.com/ibwmahin', 
-      label: 'Twitter',
-      username: '@ibwmahin' 
+    {
+      icon: faTwitter,
+      href: "https://twitter.com/ibwmahin",
+      label: "Twitter",
+      username: "@ibwmahin",
     },
-    { 
-      icon: faInstagram, 
-      href: 'https://instagram.com/ibwmahin', 
-      label: 'Instagram',
-      username: '@ibwmahin' 
+    {
+      icon: faInstagram,
+      href: "https://instagram.com/ibwmahin",
+      label: "Instagram",
+      username: "@ibwmahin",
     },
-    { 
-      icon: faLinkedin, 
-      href: 'https://linkedin.com/in/ibwmahin', 
-      label: 'LinkedIn',
-      username: '@ibwmahin' 
+    {
+      icon: faLinkedin,
+      href: "https://linkedin.com/in/ibwmahin",
+      label: "LinkedIn",
+      username: "@ibwmahin",
     },
-    { 
-      icon: faGithub, 
-      href: 'https://github.com/ibwmahin', 
-      label: 'GitHub',
-      username: '@ibwmahin' 
+    {
+      icon: faGithub,
+      href: "https://github.com/ibwmahin",
+      label: "GitHub",
+      username: "@ibwmahin",
     },
-    { 
-      icon: faDribbble, 
-      href: 'https://dribbble.com/ibwmahin', 
-      label: 'Dribbble',
-      username: '@ibwmahin' 
+    {
+      icon: faDribbble,
+      href: "https://dribbble.com/ibwmahin",
+      label: "Dribbble",
+      username: "@ibwmahin",
     },
   ];
 
   /**
    * Handle form input changes
    */
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -104,15 +106,16 @@ export function Contact() {
 
     try {
       // EmailJS configuration - replace with your actual keys
-      const serviceId = process.env.VITE_EMAILJS_SERVICE_ID || '';
-      const templateId = process.env.VITE_EMAILJS_TEMPLATE_ID || '';
-      const publicKey = process.env.VITE_EMAILJS_PUBLIC_KEY || '';
+      const serviceId = process.env.VITE_EMAILJS_SERVICE_ID || "";
+      const templateId = process.env.VITE_EMAILJS_TEMPLATE_ID || "";
+      const publicKey = process.env.VITE_EMAILJS_PUBLIC_KEY || "";
 
       if (!serviceId || !templateId || !publicKey) {
         toast({
           title: "Configuration Required",
-          description: "Please configure EmailJS service, template, and public keys.",
-          variant: "destructive"
+          description:
+            "Please configure EmailJS service, template, and public keys.",
+          variant: "destructive",
         });
         return;
       }
@@ -124,9 +127,9 @@ export function Contact() {
           from_name: formData.name,
           from_email: formData.email,
           message: formData.message,
-          to_name: 'Abdulla Al Mahin',
+          to_name: "Abdulla Al Mahin",
         },
-        publicKey
+        publicKey,
       );
 
       toast({
@@ -135,13 +138,13 @@ export function Contact() {
       });
 
       // Reset form
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: "", email: "", message: "" });
     } catch (error) {
-      console.error('EmailJS Error:', error);
+      console.error("EmailJS Error:", error);
       toast({
         title: "Error",
         description: "Failed to send message. Please try again later.",
-        variant: "destructive"
+        variant: "destructive",
       });
     } finally {
       setIsSubmitting(false);
@@ -149,7 +152,7 @@ export function Contact() {
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-16">
+    <div className="min-h-screen pt-24 pb-16 mt-5">
       <div className="max-w-4xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -176,7 +179,8 @@ export function Contact() {
             </div>
             <StatusBadge status="AVAILABLE FOR WORK" />
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-              Got an idea and need development help? Reach out now and let's bring your vision to life.
+              Got an idea and need development help? Reach out now and let's
+              bring your vision to life.
             </p>
           </div>
 
@@ -193,7 +197,8 @@ export function Contact() {
                   Design Inquiry
                 </h2>
                 <p className="text-muted-foreground">
-                  Fill out the form below and I'll get back to you within 24 hours.
+                  Fill out the form below and I'll get back to you within 24
+                  hours.
                 </p>
               </div>
 
@@ -244,14 +249,21 @@ export function Contact() {
                     <>
                       <motion.div
                         animate={{ rotate: 360 }}
-                        transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+                        transition={{
+                          duration: 1,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
                         className="w-4 h-4 border-2 border-current border-t-transparent rounded-full mr-2"
                       />
                       Sending...
                     </>
                   ) : (
                     <>
-                      <FontAwesomeIcon icon={faPaperPlane} className="w-4 h-4 mr-2" />
+                      <FontAwesomeIcon
+                        icon={faPaperPlane}
+                        className="w-4 h-4 mr-2"
+                      />
                       Send Message
                     </>
                   )}
@@ -271,14 +283,17 @@ export function Contact() {
                 <h3 className="text-xl font-semibold text-foreground">
                   Contact Information
                 </h3>
-                
+
                 <div className="space-y-4">
                   <div className="flex items-center gap-4 text-muted-foreground">
                     <FontAwesomeIcon icon={faEnvelope} className="w-5 h-5" />
                     <span>ibwmahin@gmail.com</span>
                   </div>
                   <div className="flex items-center gap-4 text-muted-foreground">
-                    <FontAwesomeIcon icon={faMapMarkerAlt} className="w-5 h-5" />
+                    <FontAwesomeIcon
+                      icon={faMapMarkerAlt}
+                      className="w-5 h-5"
+                    />
                     <span>Bangladesh</span>
                   </div>
                 </div>
@@ -289,7 +304,7 @@ export function Contact() {
                 <h3 className="text-xl font-semibold text-foreground">
                   Follow Me
                 </h3>
-                
+
                 <div className="grid grid-cols-2 gap-4">
                   {socialLinks.map((social) => (
                     <motion.a
@@ -301,13 +316,17 @@ export function Contact() {
                       whileHover={{ scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      <FontAwesomeIcon 
-                        icon={social.icon} 
-                        className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors" 
+                      <FontAwesomeIcon
+                        icon={social.icon}
+                        className="w-5 h-5 text-muted-foreground group-hover:text-primary transition-colors"
                       />
                       <div>
-                        <div className="font-medium text-sm text-foreground">{social.label}</div>
-                        <div className="text-xs text-muted-foreground">{social.username}</div>
+                        <div className="font-medium text-sm text-foreground">
+                          {social.label}
+                        </div>
+                        <div className="text-xs text-muted-foreground">
+                          {social.username}
+                        </div>
                       </div>
                     </motion.a>
                   ))}
@@ -318,11 +337,13 @@ export function Contact() {
               <div className="p-6 rounded-lg bg-card border border-border">
                 <div className="flex items-center gap-3 mb-3">
                   <div className="w-2 h-2 bg-success rounded-full"></div>
-                  <h4 className="font-semibold text-foreground">Quick Response</h4>
+                  <h4 className="font-semibold text-foreground">
+                    Quick Response
+                  </h4>
                 </div>
                 <p className="text-sm text-muted-foreground">
-                  I typically respond to all inquiries within 24 hours. For urgent projects, 
-                  feel free to reach out directly via email.
+                  I typically respond to all inquiries within 24 hours. For
+                  urgent projects, feel free to reach out directly via email.
                 </p>
               </div>
             </motion.div>
@@ -332,3 +353,4 @@ export function Contact() {
     </div>
   );
 }
+

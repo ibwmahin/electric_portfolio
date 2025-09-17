@@ -1,17 +1,17 @@
 /**
  * Products Page Component
- * 
+ *
  * Dedicated page for showcasing digital products and applications.
  * Features expanded product listings with external links.
  */
 
-import { motion } from 'framer-motion';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCopy } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
-import { StatusBadge } from '../components/StatusBadge';
-import { ProductCard } from '../components/ProductCard';
-import { Footer } from '../components/Footer';
+import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCopy } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import { StatusBadge } from "../components/StatusBadge";
+import { ProductCard } from "../components/ProductCard";
+import { Footer } from "../components/Footer";
 
 /**
  * Products data array for easy management
@@ -23,15 +23,17 @@ const products = [
     category: "Learning Platform",
     icon: "📚",
     href: "https://pearni.netlify.app/",
-    description: "Interactive learning platform designed to enhance educational experiences with modern UI/UX."
+    description:
+      "Interactive learning platform designed to enhance educational experiences with modern UI/UX.",
   },
   {
     title: "Cyber Scan Guardian Shield",
     category: "Security Tool",
     icon: "🛡️",
     href: "https://ibwmahin.github.io/cyber-scan-guardian-shield/",
-    description: "Advanced cybersecurity scanning tool for vulnerability assessment and protection."
-  }
+    description:
+      "Advanced cybersecurity scanning tool for vulnerability assessment and protection.",
+  },
 ];
 
 /**
@@ -43,22 +45,25 @@ const showcaseProjects = [
     category: "AI Educational Platform",
     icon: "🚀",
     href: "https://digitalpathways.ai/",
-    description: "AI-powered educational platform revolutionizing learning experiences."
+    description:
+      "AI-powered educational platform revolutionizing learning experiences.",
   },
   {
     title: "Gaming Website",
     category: "Entertainment Platform",
     icon: "🎮",
     href: "https://ibwmahin.github.io/Gaming_Website/",
-    description: "Interactive gaming platform with modern design and smooth user experience."
+    description:
+      "Interactive gaming platform with modern design and smooth user experience.",
   },
   {
     title: "Manae Shopping Mart",
     category: "E-commerce Platform",
     icon: "🛍️",
     href: "https://manaeshoppingmartllc.com/",
-    description: "Full-featured e-commerce platform with secure payment integration."
-  }
+    description:
+      "Full-featured e-commerce platform with secure payment integration.",
+  },
 ];
 
 /**
@@ -66,7 +71,7 @@ const showcaseProjects = [
  */
 export function Products() {
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('ibwmahin@gmail.com');
+    navigator.clipboard.writeText("ibwmahin@gmail.com");
   };
 
   const containerVariants = {
@@ -75,18 +80,18 @@ export function Products() {
       opacity: 1,
       transition: {
         delayChildren: 0.2,
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background mt-5">
       <div className="max-w-2xl mx-auto px-6 pt-24 pb-16">
         <motion.div
           variants={containerVariants}
@@ -105,8 +110,9 @@ export function Products() {
               My Digital Products
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Explore the digital products and applications I've built, each designed 
-              to solve real-world problems with modern web technologies.
+              Explore the digital products and applications I've built, each
+              designed to solve real-world problems with modern web
+              technologies.
             </p>
           </motion.div>
 
@@ -135,7 +141,7 @@ export function Products() {
             <h3 className="text-xl font-semibold text-foreground">
               More Projects & Applications
             </h3>
-            
+
             <div className="space-y-4">
               {showcaseProjects.map((project, index) => (
                 <ProductCard
@@ -150,7 +156,7 @@ export function Products() {
           </motion.div>
 
           {/* Feature Highlight */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="bg-card border border-border rounded-2xl p-6 text-center space-y-4"
           >
@@ -158,8 +164,9 @@ export function Products() {
               🚀 Featured Project
             </h3>
             <p className="text-muted-foreground">
-              "Pearni" - An interactive learning platform that revolutionizes educational 
-              experiences with modern design, smooth animations, and intuitive user interface.
+              "Pearni" - An interactive learning platform that revolutionizes
+              educational experiences with modern design, smooth animations, and
+              intuitive user interface.
             </p>
             <motion.a
               href="https://pearni.netlify.app/"
@@ -174,7 +181,7 @@ export function Products() {
           </motion.div>
 
           {/* Tech Stack Info */}
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="bg-card border border-border rounded-2xl p-6 space-y-4"
           >
@@ -184,13 +191,23 @@ export function Products() {
             </h3>
             <div className="text-sm text-muted-foreground space-y-2">
               <p>
-                All my products are built using cutting-edge web technologies including 
-                React, TypeScript, Tailwind CSS, and various modern frameworks to ensure 
-                optimal performance and user experience.
+                All my products are built using cutting-edge web technologies
+                including React, TypeScript, Tailwind CSS, and various modern
+                frameworks to ensure optimal performance and user experience.
               </p>
               <div className="flex flex-wrap gap-2 pt-2">
-                {['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'MongoDB', 'AWS'].map((tech) => (
-                  <span key={tech} className="px-2 py-1 bg-muted rounded-md text-xs font-medium">
+                {[
+                  "React",
+                  "TypeScript",
+                  "Tailwind CSS",
+                  "Node.js",
+                  "MongoDB",
+                  "AWS",
+                ].map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2 py-1 bg-muted rounded-md text-xs font-medium"
+                  >
                     {tech}
                   </span>
                 ))}
@@ -199,17 +216,18 @@ export function Products() {
           </motion.div>
 
           {/* Call to Action */}
-          <motion.div 
-            variants={itemVariants} 
+          <motion.div
+            variants={itemVariants}
             className="text-center space-y-6 pt-8"
           >
             <h3 className="text-2xl font-bold text-foreground">
               Ready to build something amazing?
             </h3>
             <p className="text-muted-foreground">
-              Let's collaborate and bring your ideas to life with modern web development
+              Let's collaborate and bring your ideas to life with modern web
+              development
             </p>
-            
+
             <div className="flex gap-3 justify-center">
               <Link to="/contact">
                 <motion.button
@@ -238,3 +256,4 @@ export function Products() {
     </div>
   );
 }
+

@@ -1,26 +1,27 @@
 /**
  * Home Page Component
- * 
+ *
  * The main landing page featuring hero section, project preview, and products showcase.
  * Includes animated elements using Framer Motion and responsive design.
  */
 
-import { motion } from 'framer-motion';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCopy, faArrowRight } from '@fortawesome/free-solid-svg-icons';
-import { Link } from 'react-router-dom';
-import { StatusBadge } from '../components/StatusBadge';
-import { ProjectCard } from '../components/ProjectCard';
-import { ProductCard } from '../components/ProductCard';
-import { Footer } from '../components/Footer';
-import profilePhoto from '../assets/profile-photo.jpg';
+import { motion } from "framer-motion";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCopy, faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
+import { StatusBadge } from "../components/StatusBadge";
+import { ProjectCard } from "../components/ProjectCard";
+import { ProductCard } from "../components/ProductCard";
+import { Footer } from "../components/Footer";
+import profilePhoto from "../assets/profile-photo.jpg";
 
 /**
  * Main home page with hero section and project previews
  */
 export function Home() {
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('ibwmahin@gmail.com');
+    navigator.clipboard.writeText("ibwmahin@gmail.com");
+    alert("Mail Copyed!");
     // Add toast notification here if desired
   };
 
@@ -30,18 +31,18 @@ export function Home() {
       opacity: 1,
       transition: {
         delayChildren: 0.2,
-        staggerChildren: 0.1
-      }
-    }
+        staggerChildren: 0.1,
+      },
+    },
   };
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background mt-5">
       <div className="max-w-2xl mx-auto px-6 pt-24 pb-16">
         <motion.div
           variants={containerVariants}
@@ -62,10 +63,11 @@ export function Home() {
                   I'm Abdulla Al Mahin
                 </h1>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Web developer from Bangladesh.<br />
+                  Web developer from Bangladesh.
+                  <br />
                   Creating amazing digital experiences.
                 </p>
-                
+
                 {/* Action Buttons */}
                 <div className="flex gap-3 pt-2">
                   <Link to="/contact">
@@ -111,8 +113,8 @@ export function Home() {
                 <div className="w-2 h-2 bg-success rounded-full" />
                 Projects
               </h2>
-              <Link 
-                to="/projects" 
+              <Link
+                to="/projects"
                 className="text-muted-foreground hover:text-foreground transition-colors flex items-center gap-1 text-sm"
               >
                 View All
@@ -126,21 +128,30 @@ export function Home() {
                 description="AI-powered educational platform"
                 icon="🚀"
                 color="morva"
-                onClick={() => window.open('https://digitalpathways.ai/', '_blank')}
+                onClick={() =>
+                  window.open("https://digitalpathways.ai/", "_blank")
+                }
               />
               <ProjectCard
                 title="LazyNvim Config"
                 description="Custom Neovim configuration"
                 icon="⚡"
                 color="rectangle"
-                onClick={() => window.open('https://github.com/ibwmahin/LazyNvim', '_blank')}
+                onClick={() =>
+                  window.open("https://github.com/ibwmahin/LazyNvim", "_blank")
+                }
               />
               <ProjectCard
                 title="Gaming Website"
                 description="Interactive gaming platform"
                 icon="🎮"
                 color="simply"
-                onClick={() => window.open('https://ibwmahin.github.io/Gaming_Website/', '_blank')}
+                onClick={() =>
+                  window.open(
+                    "https://ibwmahin.github.io/Gaming_Website/",
+                    "_blank",
+                  )
+                }
               />
             </div>
           </motion.div>
@@ -169,8 +180,8 @@ export function Home() {
           </motion.div>
 
           {/* Call to Action */}
-          <motion.div 
-            variants={itemVariants} 
+          <motion.div
+            variants={itemVariants}
             className="text-center space-y-6 pt-8"
           >
             <h3 className="text-2xl font-bold text-foreground">
@@ -179,7 +190,7 @@ export function Home() {
             <p className="text-muted-foreground">
               Creating user experience and visual appealing design
             </p>
-            
+
             <div className="flex gap-3 justify-center">
               <Link to="/contact">
                 <motion.button
