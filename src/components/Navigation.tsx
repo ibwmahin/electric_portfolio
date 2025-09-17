@@ -22,7 +22,7 @@ export function Navigation() {
     { path: "/about", icon: faUser, label: "About" },
     { path: "/projects", icon: faFolderOpen, label: "Projects" }, // changed
     { path: "/products", icon: faBox, label: "Products" }, // changed
-    { path: "/blog", icon: faPen, label: "#Blog" }, // new
+    { path: "/blog", icon: faPen, label: "Blog" }, // new
   ];
 
   return (
@@ -45,7 +45,7 @@ export function Navigation() {
           border border-white/6 dark:border-black/20
           rounded-2xl px-5 py-3 shadow-lg
           flex items-center gap-4
-          min-w-[220px] md:min-w-[420px]
+          min-w-[260px] md:min-w-[460px]
         "
       >
         <div className="flex items-center gap-2">
