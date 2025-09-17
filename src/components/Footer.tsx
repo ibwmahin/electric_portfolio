@@ -19,10 +19,10 @@ import {
  */
 export function Footer() {
   const socialLinks = [
-    { icon: faTwitter, href: 'https://twitter.com', label: 'Twitter' },
-    { icon: faInstagram, href: 'https://instagram.com', label: 'Instagram' },
-    { icon: faDribbble, href: 'https://dribbble.com', label: 'Dribbble' },
-    { icon: faLinkedin, href: 'https://linkedin.com', label: 'LinkedIn' },
+    { icon: faTwitter, href: 'https://twitter.com/ibwmahin', label: 'Twitter' },
+    { icon: faInstagram, href: 'https://instagram.com/ibwmahin', label: 'Instagram' },
+    { icon: faDribbble, href: 'https://dribbble.com/ibwmahin', label: 'Dribbble' },
+    { icon: faLinkedin, href: 'https://linkedin.com/in/ibwmahin', label: 'LinkedIn' },
   ];
 
   return (
@@ -62,35 +62,35 @@ export function Footer() {
           {/* Copyright */}
           <div className="pt-8 border-t border-border text-center space-y-2">
             <p className="text-sm text-muted-foreground">
-              © 2023 Subtle Folio – Framer Template
+              © 2024 Abdulla Al Mahin – Web Developer Portfolio
             </p>
             <p className="text-xs text-muted-foreground">
-              by{' '}
+              Built with{' '}
               <a 
-                href="https://twitter.com/nurpraditya" 
+                href="https://react.dev" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:text-foreground transition-colors"
               >
-                Nur Praditya
+                React
               </a>
               {' // '}
               <a 
-                href="https://morvalabs.com" 
+                href="https://tailwindcss.com" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:text-foreground transition-colors"
               >
-                MorvaLabs
+                Tailwind CSS
               </a>
               {' // '}
               <a 
-                href="https://framer.com" 
+                href="https://framer.com/motion" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="hover:text-foreground transition-colors"
               >
-                Framer
+                Framer Motion
               </a>
             </p>
           </div>

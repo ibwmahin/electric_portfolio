@@ -8,17 +8,70 @@
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 import { StatusBadge } from '../components/StatusBadge';
 import { ProjectCard } from '../components/ProjectCard';
 import { ProductCard } from '../components/ProductCard';
 import { Footer } from '../components/Footer';
 
 /**
+ * Projects data array for easy management
+ */
+const projects = [
+  {
+    title: "Digital Pathways",
+    description: "AI-powered educational platform",
+    icon: "🚀",
+    color: "morva" as const,
+    url: "https://digitalpathways.ai/"
+  },
+  {
+    title: "LazyNvim Config",
+    description: "Custom Neovim configuration",
+    icon: "⚡",
+    color: "rectangle" as const,
+    url: "https://github.com/ibwmahin/LazyNvim"
+  },
+  {
+    title: "Gaming Website",
+    description: "Interactive gaming platform",
+    icon: "🎮",
+    color: "simply" as const,
+    url: "https://ibwmahin.github.io/Gaming_Website/"
+  },
+  {
+    title: "Manae Shopping Mart",
+    description: "E-commerce platform",
+    icon: "🛍️",
+    color: "glassdoor" as const,
+    url: "https://manaeshoppingmartllc.com/"
+  }
+];
+
+/**
+ * Products data for side projects section
+ */
+const products = [
+  {
+    title: "Pearni",
+    category: "Learning Platform",
+    icon: "📚",
+    href: "https://pearni.netlify.app/"
+  },
+  {
+    title: "Cyber Scan Guardian Shield",
+    category: "Security Tool",
+    icon: "🛡️",
+    href: "https://ibwmahin.github.io/cyber-scan-guardian-shield/"
+  }
+];
+
+/**
  * Projects page displaying portfolio of work
  */
 export function Projects() {
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('brian.do@email.com');
+    navigator.clipboard.writeText('ibwmahin@gmail.com');
   };
 
   const containerVariants = {
@@ -57,44 +110,29 @@ export function Projects() {
               My Works
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Discover my portfolio, where purposeful interfaces meet captivating 
-              design. My work strives to enhance experiences and inspire.
+              Discover my portfolio of web development projects, where modern technology 
+              meets creative solutions. Each project represents my commitment to quality 
+              and innovation.
             </p>
           </motion.div>
 
           {/* All Projects */}
           <motion.div variants={itemVariants} className="space-y-4">
+            <h2 className="text-xl font-semibold text-foreground flex items-center gap-2">
+              <div className="w-2 h-2 bg-success rounded-full" />
+              Featured Projects
+            </h2>
             <div className="space-y-3">
-              <ProjectCard
-                title="Morva labs"
-                description="Visual design, Branding"
-                icon="M"
-                color="morva"
-              />
-              <ProjectCard
-                title="Rectangle"
-                description="Product design, Icon design"
-                icon="⬜"
-                color="rectangle"
-              />
-              <ProjectCard
-                title="Simply"
-                description="Landing page, Illustration design"
-                icon="⚡"
-                color="simply"
-              />
-              <ProjectCard
-                title="Glassdoor"
-                description="Icon design, Illustration design"
-                icon="💎"
-                color="glassdoor"
-              />
-              <ProjectCard
-                title="Seven LTD."
-                description="Branding, Landing page"
-                icon="7"
-                color="seven"
-              />
+              {projects.map((project, index) => (
+                <ProjectCard
+                  key={index}
+                  title={project.title}
+                  description={project.description}
+                  icon={project.icon}
+                  color={project.color}
+                  onClick={() => window.open(project.url, '_blank')}
+                />
+              ))}
             </div>
           </motion.div>
 
@@ -115,31 +153,38 @@ export function Projects() {
               </h3>
 
               <div className="space-y-3">
-                <ProductCard
-                  title="Portafo"
-                  category="Framer Template"
-                  icon="P"
-                  href="https://framer.com"
-                />
-                <ProductCard
-                  title="Faktur Invoice"
-                  category="Framer Template"
-                  icon="📄"
-                  href="https://framer.com"
-                />
-                <ProductCard
-                  title="Goven"
-                  category="Framer Template"
-                  icon="G"
-                  href="https://framer.com"
-                />
-                <ProductCard
-                  title="Subtle Folio"
-                  category="Framer Template"
-                  icon="🎨"
-                  href="https://framer.com"
-                />
+                {products.map((product, index) => (
+                  <ProductCard
+                    key={index}
+                    title={product.title}
+                    category={product.category}
+                    icon={product.icon}
+                    href={product.href}
+                  />
+                ))}
               </div>
+            </div>
+          </motion.div>
+
+          {/* Technical Skills Highlight */}
+          <motion.div 
+            variants={itemVariants}
+            className="bg-card border border-border rounded-2xl p-6 space-y-4"
+          >
+            <h3 className="text-xl font-semibold text-card-foreground flex items-center gap-2">
+              <div className="w-2 h-2 bg-primary rounded-full" />
+              Technologies I Use
+            </h3>
+            <div className="text-sm text-muted-foreground">
+              <p className="mb-2">
+                <strong>Frontend:</strong> React, TypeScript, Tailwind CSS, Framer Motion
+              </p>
+              <p className="mb-2">
+                <strong>Backend:</strong> Node.js, Express, MongoDB, PostgreSQL
+              </p>
+              <p>
+                <strong>Tools:</strong> Git, Docker, AWS, Vercel, Netlify
+              </p>
             </div>
           </motion.div>
 
@@ -152,17 +197,19 @@ export function Projects() {
               Let's work together.
             </h3>
             <p className="text-muted-foreground">
-              Creating user experience and visual appealing design
+              Ready to bring your ideas to life with modern web technologies
             </p>
             
             <div className="flex gap-3 justify-center">
-              <motion.button
-                className="hire-button"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Hire Me
-              </motion.button>
+              <Link to="/contact">
+                <motion.button
+                  className="hire-button"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Hire Me
+                </motion.button>
+              </Link>
               <motion.button
                 className="copy-button flex items-center gap-2"
                 onClick={handleCopyEmail}

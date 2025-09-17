@@ -20,7 +20,7 @@ import profilePhoto from '../assets/profile-photo.jpg';
  */
 export function Home() {
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('brian.do@email.com');
+    navigator.clipboard.writeText('ibwmahin@gmail.com');
     // Add toast notification here if desired
   };
 
@@ -51,7 +51,7 @@ export function Home() {
         >
           {/* Status Badge */}
           <motion.div variants={itemVariants}>
-            <StatusBadge status="Product Designer" />
+            <StatusBadge status="Web Developer" />
           </motion.div>
 
           {/* Hero Section */}
@@ -59,22 +59,24 @@ export function Home() {
             <div className="flex items-center justify-between">
               <div className="space-y-4">
                 <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-                  I'm Brian Do
+                  I'm Abdulla Al Mahin
                 </h1>
                 <p className="text-lg text-muted-foreground leading-relaxed">
-                  Product designer from Jakarta, ID.<br />
-                  Currently designing at Rectangle.
+                  Web developer from Bangladesh.<br />
+                  Creating amazing digital experiences.
                 </p>
                 
                 {/* Action Buttons */}
                 <div className="flex gap-3 pt-2">
-                  <motion.button
-                    className="hire-button"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    Hire Me
-                  </motion.button>
+                  <Link to="/contact">
+                    <motion.button
+                      className="hire-button"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                    >
+                      Hire Me
+                    </motion.button>
+                  </Link>
                   <motion.button
                     className="copy-button flex items-center gap-2"
                     onClick={handleCopyEmail}
@@ -95,7 +97,7 @@ export function Home() {
               >
                 <img
                   src={profilePhoto}
-                  alt="Brian Do - Product Designer"
+                  alt="Abdulla Al Mahin - Web Developer"
                   className="w-24 h-24 md:w-28 md:h-28 rounded-full object-cover ring-4 ring-border"
                 />
               </motion.div>
@@ -120,22 +122,25 @@ export function Home() {
 
             <div className="space-y-3">
               <ProjectCard
-                title="Morva labs"
-                description="Visual design, Branding"
-                icon="M"
+                title="Digital Pathways"
+                description="AI-powered educational platform"
+                icon="🚀"
                 color="morva"
+                onClick={() => window.open('https://digitalpathways.ai/', '_blank')}
               />
               <ProjectCard
-                title="Rectangle"
-                description="Product design, Icon design"
-                icon="⬜"
-                color="rectangle"
-              />
-              <ProjectCard
-                title="Simply"
-                description="Landing page, Illustration design"
+                title="LazyNvim Config"
+                description="Custom Neovim configuration"
                 icon="⚡"
+                color="rectangle"
+                onClick={() => window.open('https://github.com/ibwmahin/LazyNvim', '_blank')}
+              />
+              <ProjectCard
+                title="Gaming Website"
+                description="Interactive gaming platform"
+                icon="🎮"
                 color="simply"
+                onClick={() => window.open('https://ibwmahin.github.io/Gaming_Website/', '_blank')}
               />
             </div>
           </motion.div>
@@ -149,22 +154,16 @@ export function Home() {
 
             <div className="space-y-3">
               <ProductCard
-                title="Portafo"
-                category="Framer Template"
-                icon="P"
-                href="https://framer.com"
+                title="Pearni"
+                category="Learning Platform"
+                icon="📚"
+                href="https://pearni.netlify.app/"
               />
               <ProductCard
-                title="Faktur Invoice"
-                category="Framer Template"
-                icon="📄"
-                href="https://framer.com"
-              />
-              <ProductCard
-                title="Goven"
-                category="Framer Template"
-                icon="G"
-                href="https://framer.com"
+                title="Cyber Scan Guardian Shield"
+                category="Security Tool"
+                icon="🛡️"
+                href="https://ibwmahin.github.io/cyber-scan-guardian-shield/"
               />
             </div>
           </motion.div>
@@ -182,13 +181,15 @@ export function Home() {
             </p>
             
             <div className="flex gap-3 justify-center">
-              <motion.button
-                className="hire-button"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Hire Me
-              </motion.button>
+              <Link to="/contact">
+                <motion.button
+                  className="hire-button"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Hire Me
+                </motion.button>
+              </Link>
               <motion.button
                 className="copy-button flex items-center gap-2"
                 onClick={handleCopyEmail}

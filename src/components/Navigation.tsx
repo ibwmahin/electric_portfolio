@@ -33,13 +33,14 @@ export function Navigation() {
   ];
 
   return (
-    <motion.nav 
-      className="nav-container rounded-2xl px-6 py-3"
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="flex items-center gap-6">
+    <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50">
+      <motion.nav 
+        className="nav-container rounded-2xl px-6 py-3"
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+      >
+        <div className="flex items-center gap-6">
         {/* Navigation Links */}
         <div className="flex items-center gap-4">
           {navItems.map((item) => (
@@ -71,14 +72,17 @@ export function Navigation() {
         </button>
 
         {/* Hire Me Button */}
-        <motion.button
-          className="hire-button"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-        >
-          Hire Me
-        </motion.button>
-      </div>
-    </motion.nav>
+        <Link to="/contact">
+          <motion.button
+            className="hire-button"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Hire Me
+          </motion.button>
+        </Link>
+        </div>
+      </motion.nav>
+    </div>
   );
 }

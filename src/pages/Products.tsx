@@ -1,23 +1,72 @@
 /**
  * Products Page Component
  * 
- * Dedicated page for showcasing digital products and templates.
+ * Dedicated page for showcasing digital products and applications.
  * Features expanded product listings with external links.
  */
 
 import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
 import { StatusBadge } from '../components/StatusBadge';
 import { ProductCard } from '../components/ProductCard';
 import { Footer } from '../components/Footer';
 
 /**
- * Products page showcasing digital products and templates
+ * Products data array for easy management
+ * Add or remove products by modifying this array
+ */
+const products = [
+  {
+    title: "Pearni",
+    category: "Learning Platform",
+    icon: "📚",
+    href: "https://pearni.netlify.app/",
+    description: "Interactive learning platform designed to enhance educational experiences with modern UI/UX."
+  },
+  {
+    title: "Cyber Scan Guardian Shield",
+    category: "Security Tool",
+    icon: "🛡️",
+    href: "https://ibwmahin.github.io/cyber-scan-guardian-shield/",
+    description: "Advanced cybersecurity scanning tool for vulnerability assessment and protection."
+  }
+];
+
+/**
+ * Additional showcase projects
+ */
+const showcaseProjects = [
+  {
+    title: "Digital Pathways AI",
+    category: "AI Educational Platform",
+    icon: "🚀",
+    href: "https://digitalpathways.ai/",
+    description: "AI-powered educational platform revolutionizing learning experiences."
+  },
+  {
+    title: "Gaming Website",
+    category: "Entertainment Platform",
+    icon: "🎮",
+    href: "https://ibwmahin.github.io/Gaming_Website/",
+    description: "Interactive gaming platform with modern design and smooth user experience."
+  },
+  {
+    title: "Manae Shopping Mart",
+    category: "E-commerce Platform",
+    icon: "🛍️",
+    href: "https://manaeshoppingmartllc.com/",
+    description: "Full-featured e-commerce platform with secure payment integration."
+  }
+];
+
+/**
+ * Products page showcasing digital products and applications
  */
 export function Products() {
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('brian.do@email.com');
+    navigator.clipboard.writeText('ibwmahin@gmail.com');
   };
 
   const containerVariants = {
@@ -53,80 +102,50 @@ export function Products() {
           {/* Page Header */}
           <motion.div variants={itemVariants} className="space-y-4">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground">
-              Explore My Products
+              My Digital Products
             </h1>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              Some of the digital products that I worked on as side projects, 
-              explore and try it now
+              Explore the digital products and applications I've built, each designed 
+              to solve real-world problems with modern web technologies.
             </p>
           </motion.div>
 
-          {/* Products Section */}
+          {/* Main Products Section */}
           <motion.div variants={itemVariants} className="space-y-6">
             <h2 className="text-lg font-semibold text-foreground flex items-center gap-2">
               <div className="w-2 h-2 bg-success rounded-full" />
-              Products
+              Featured Products
             </h2>
 
             <div className="space-y-4">
-              <ProductCard
-                title="Portafo"
-                category="Framer Template"
-                icon="P"
-                href="https://framer.com/templates/portafo"
-              />
-              <ProductCard
-                title="Faktur Invoice"
-                category="Framer Template"
-                icon="📄"
-                href="https://framer.com/templates/invoice"
-              />
-              <ProductCard
-                title="Goven"
-                category="Framer Template"
-                icon="G"
-                href="https://framer.com/templates/goven"
-              />
-              <ProductCard
-                title="Subtle Folio"
-                category="Framer Template"
-                icon="🎨"
-                href="https://framer.com/templates/portfolio"
-              />
+              {products.map((product, index) => (
+                <ProductCard
+                  key={index}
+                  title={product.title}
+                  category={product.category}
+                  icon={product.icon}
+                  href={product.href}
+                />
+              ))}
             </div>
           </motion.div>
 
-          {/* Additional Products */}
+          {/* Additional Projects */}
           <motion.div variants={itemVariants} className="space-y-4">
             <h3 className="text-xl font-semibold text-foreground">
-              More Templates & Tools
+              More Projects & Applications
             </h3>
             
             <div className="space-y-4">
-              <ProductCard
-                title="Minimal CV"
-                category="Framer Template"
-                icon="📋"
-                href="https://framer.com/templates/cv"
-              />
-              <ProductCard
-                title="Agency Landing"
-                category="Framer Template"
-                icon="🏢"
-                href="https://framer.com/templates/agency"
-              />
-              <ProductCard
-                title="Design System"
-                category="Figma Resource"
-                icon="🎯"
-                href="https://figma.com/design-system"
-              />
-              <ProductCard
-                title="Icon Pack"
-                category="Design Resource"
-                icon="⭐"
-                href="https://icons.com/pack"
-              />
+              {showcaseProjects.map((project, index) => (
+                <ProductCard
+                  key={index}
+                  title={project.title}
+                  category={project.category}
+                  icon={project.icon}
+                  href={project.href}
+                />
+              ))}
             </div>
           </motion.div>
 
@@ -136,22 +155,47 @@ export function Products() {
             className="bg-card border border-border rounded-2xl p-6 text-center space-y-4"
           >
             <h3 className="text-xl font-semibold text-card-foreground">
-              🚀 Featured Template
+              🚀 Featured Project
             </h3>
             <p className="text-muted-foreground">
-              "Portafo" - A clean and modern portfolio template perfect for designers 
-              and developers. Built with responsive design and smooth animations.
+              "Pearni" - An interactive learning platform that revolutionizes educational 
+              experiences with modern design, smooth animations, and intuitive user interface.
             </p>
             <motion.a
-              href="https://framer.com/templates/portafo"
+              href="https://pearni.netlify.app/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-block hire-button"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              View Template
+              Explore Pearni
             </motion.a>
+          </motion.div>
+
+          {/* Tech Stack Info */}
+          <motion.div 
+            variants={itemVariants}
+            className="bg-card border border-border rounded-2xl p-6 space-y-4"
+          >
+            <h3 className="text-xl font-semibold text-card-foreground flex items-center gap-2">
+              <div className="w-2 h-2 bg-primary rounded-full" />
+              Built With Modern Technologies
+            </h3>
+            <div className="text-sm text-muted-foreground space-y-2">
+              <p>
+                All my products are built using cutting-edge web technologies including 
+                React, TypeScript, Tailwind CSS, and various modern frameworks to ensure 
+                optimal performance and user experience.
+              </p>
+              <div className="flex flex-wrap gap-2 pt-2">
+                {['React', 'TypeScript', 'Tailwind CSS', 'Node.js', 'MongoDB', 'AWS'].map((tech) => (
+                  <span key={tech} className="px-2 py-1 bg-muted rounded-md text-xs font-medium">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
           </motion.div>
 
           {/* Call to Action */}
@@ -160,20 +204,22 @@ export function Products() {
             className="text-center space-y-6 pt-8"
           >
             <h3 className="text-2xl font-bold text-foreground">
-              Let's work together.
+              Ready to build something amazing?
             </h3>
             <p className="text-muted-foreground">
-              Creating user experience and visual appealing design
+              Let's collaborate and bring your ideas to life with modern web development
             </p>
             
             <div className="flex gap-3 justify-center">
-              <motion.button
-                className="hire-button"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                Hire Me
-              </motion.button>
+              <Link to="/contact">
+                <motion.button
+                  className="hire-button"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  Hire Me
+                </motion.button>
+              </Link>
               <motion.button
                 className="copy-button flex items-center gap-2"
                 onClick={handleCopyEmail}
